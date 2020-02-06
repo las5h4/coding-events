@@ -22,4 +22,9 @@ public class EventController {
         model.addAttribute("events", events);
         return "events/index";
     }
+
+    @GetMapping("create")
+    public String renderCreateEventsForm() {
+        return "events/create";
+    }
 }
