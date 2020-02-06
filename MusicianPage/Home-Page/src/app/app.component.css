@@ -1,0 +1,30 @@
+h1 {
+    font-family: 'Sanchez', serif;
+    text-align: center;
+    color: #4E999C;
+    font-size: 6em;
+}
+
+h2 {
+    font-family: Sanchez, serif;
+    text-align: center;
+    color: #4E999C;
+    font-size: 4em;
+}
+
+.Links {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    padding: 10px;
+}
+
+a {
+    font-family: Sanchez, serif;
+    flex-basis: auto;
+    flex-direction: column;
+    color: #4E999C;
+
+}
+
+
