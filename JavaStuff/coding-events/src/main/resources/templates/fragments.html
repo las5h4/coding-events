@@ -4,18 +4,19 @@
     <meta charset="UTF-8"/>
     <title>Coding Events</title>
 
-    <script th:src="@{/script.js}"></script>
-    <link th:href="@{/styles.css}" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <nav th:fragment = "navigation">
-    <ul>
-        <li><a href="/events">All Events</a></li>
-        <li><a href="/events/create">Create Event</a></li>
+    <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>
     </ul>
 </nav>
 
+<td th:fragment="location">6029 Tracy Avenue</td>
 
 </body>
 </html>
