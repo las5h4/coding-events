@@ -28,6 +28,9 @@
         <td th:text="${event.name}"></td>
         <td th:text="${event.getDescription()}"></td>
         <td th:replace="fragments :: location">location</td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+        </td>
     </tr>
     </th:block>
 </table>
