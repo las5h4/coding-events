@@ -19,14 +19,16 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Contact E-Mail</th>
             <th>Location</th>
         </tr>
     </thead>
-    <th:block the:each="evvent : ${events}">
+    <th:block the:each="event : ${events}">
     <tr th:each="event : ${events}">
         <td th:text="${event.id}"></td>
         <td th:text="${event.name}"></td>
-        <td th:text="${event.getDescription()}"></td>
+        <td th:text="${event.description}"></td>
+        <td th:text="${event.contactEmail}"></td>
         <td th:replace="fragments :: location">location</td>
         <td>
             <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
