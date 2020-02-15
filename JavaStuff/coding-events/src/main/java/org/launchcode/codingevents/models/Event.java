@@ -1,8 +1,10 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Event {
@@ -21,11 +23,29 @@ public class Event {
     @Email(message="That's not a real E-Mail!")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotBlank(message = "Wait, where?!")
+    @Size(max=50, message = "We don't need the postal address, just the name of the place!")
+    private String location;
+
+    @AssertTrue(message = "Your event must require registration for you to add your event to the event page on this weird web app.")
+    private Boolean registrationRequired;
+
+    @NotNull(message = "If you don't expect people to attend your event, your event has no place on this list.")
+    @Positive(message = "If you don't expect people to attend your event, your event has no place on this list.")
+    private Integer attendance;
+
+    @Pattern(regexp="(\\d{4})?[-]?(\\d{2})?[-]?(\\d{2})", message = "You're living in the past!")
+    private String date;
+
+    public Event(String name, String description, String contactEmail, String location, Boolean registrationRequired, Integer attendance, String date) throws ParseException {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.registrationRequired = registrationRequired;
+        this.attendance = attendance;
+        this.date = date;
     }
 
     public Event() {
@@ -55,6 +75,38 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Boolean getRegistrationRequired() {
+        return registrationRequired;
+    }
+
+    public Integer getAttendance() {
+        return attendance;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setRegistrationRequired(Boolean registrationRequired) {
+        this.registrationRequired = registrationRequired;
+    }
+
+    public void setAttendance(Integer attendance) {
+        this.attendance = attendance;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId() {
