@@ -1,5 +1,8 @@
 package org.launchcode.codingevents.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,10 +10,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotBlank(message = "What's in a name? Not sure, but it is required!")
     @Size(min=3, max=50, message = "Hey! Your event name needs to be between 3 and 50 characters long!")
@@ -37,8 +42,9 @@ public class Event {
     @Pattern(regexp="(\\d{4})?[-]?(\\d{2})?[-]?(\\d{2})", message = "You're living in the past!")
     private String date;
 
-    public Event(String name, String description, String contactEmail, String location, Boolean registrationRequired, Integer attendance, String date) throws ParseException {
-        this();
+    private EventType type;
+
+    public Event(String name, String description, String contactEmail, String location, Boolean registrationRequired, Integer attendance, String date, EventType type) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -46,11 +52,11 @@ public class Event {
         this.registrationRequired = registrationRequired;
         this.attendance = attendance;
         this.date = date;
+        this.type = type;
     }
 
     public Event() {
-        this.id = nextId;
-        nextId++;
+
     }
 
     public String getName() {
@@ -111,6 +117,14 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     @Override
